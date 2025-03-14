@@ -103,3 +103,40 @@
   .react-calendar__tile:disabled {
     background-color: transparent !important;
   }
+
+
+  /* time picker */
+
+
+.time-picker-container {
+  margin-bottom: 0.7em;
+  padding-bottom: 0.7em;
+  border-bottom: var(--border-dashed);
+}
+
+.appointment-box {
+  padding-bottom: 1em;
+}
+
+.appointment-box .col-md-6:last-child {
+  padding-left: 5.5em;
+}
+
+.time-picker {
+  border-radius: 8px;
+  border: solid 1.5px #124B4F;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #124B4F;
+  padding: 5px 0;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  margin-bottom: 18px;
+}
+
+.time-picker.active {
+  background-color: #124B4F;
+  color: #fff;
+}
