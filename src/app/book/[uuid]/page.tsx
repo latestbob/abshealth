@@ -12,7 +12,7 @@ import moment from "moment";
 import { getBlockedTime } from "@/services/blockedtimeService";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/states/store";
-import { setDate, setTime } from "@/states/slices/scheduleSlice";
+import { setConsultant, setConsultantUuid, setDate, setPurpose, setTime } from "@/states/slices/scheduleSlice";
 import Link from "next/link";
 
 interface ISpecialist {
@@ -36,6 +36,11 @@ export default function SpecialistBookingPage() {
 
   const date = useSelector((state: RootState) => state.schedule.date);
   const time = useSelector((state: RootState) => state.schedule.time);
+  const purpsose = useSelector((state:RootState) => state.schedule.purpose);
+  const consultant = useSelector((state:RootState) => state.schedule.consultant);
+  const consultant_uuid = useSelector((state:RootState)=> state.schedule.consultant_uuid);
+
+
   const dispatch = useDispatch();
 
   const {
@@ -180,7 +185,7 @@ const times = defaultTimes.map((time) => ({
                       render={({ field }) => (
                         <div
                           className={`p-1 rounded-lg cursor-pointer text-center border ${
-                            field.value === row.value
+                            field.value === row.label
                               ? "bg-green-700 text-white"
                               : "bg-gray-100"
                           }`}
@@ -234,6 +239,9 @@ const times = defaultTimes.map((time) => ({
               
             ><button onClick={function(){
               dispatch(setDate(selectedDate.toString()))
+              dispatch(setPurpose(specialist.aos));
+              dispatch(setConsultant(specialist.title + " " + specialist.firstname + " " + specialist.lastname));
+              dispatch(setConsultantUuid(specialist.uuid));
             }}
             className="w-1/2 mt-4 bg-[#1997cf] hover:bg-orange-500 text-white py-2 px-4 rounded-lg"
             disabled={!selectedDate || !selectedTime}
